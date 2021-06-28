@@ -7,6 +7,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
+import java.util.Optional;
 
 @Configuration
 @EnableAutoConfiguration
@@ -34,7 +35,8 @@ public class Application {
         System.out.println();
 
         // fetch an individual customer by ID
-        Customer customer = repository.getById(1L);
+        Optional<Customer> search = repository.findById(1L);
+        Customer customer = search.get();
         System.out.println("Customer found with findOne(1L):");
         System.out.println("--------------------------------");
         System.out.println(customer);
